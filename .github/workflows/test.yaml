@@ -6,6 +6,7 @@ on:
       enviroment:
         description: environment
         type: environment
+        default: qa
 
 env:
   DAY_OF_WEEK: Monday
@@ -26,6 +27,7 @@ jobs:
     name: ${{ vars.JOB_NAME }}
     if: ${{ vars.USE_VARIABLES == 'true' }}
     runs-on: ${{ vars.RUNNER }}
+    environment: ${{ github.inputs.enviroment }}
     steps:
       - name: Use variables
         run: |
