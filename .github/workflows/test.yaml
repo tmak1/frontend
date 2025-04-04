@@ -34,11 +34,13 @@ jobs:
           echo "organization variable : $ORGANIZATION_VAR"
           echo "overridden variable : $OVERRIDE_VAR"
           echo "variable from shell environment : $ENV_CONTEXT_VAR"
+          echo "variable from shell environment 2 : $ENV_CONTEXT_VAR2"
         env:
           REPOSITORY_VAR: ${{ vars.REPOSITORY_VAR }}
           ORGANIZATION_VAR: ${{ vars.ORGANIZATION_VAR }}
           OVERRIDE_VAR: ${{ vars.OVERRIDE_VAR }}
           ENV_CONTEXT_VAR: ${{ vars.ENV_CONTEXT_VAR }}
+          ENV_CONTEXT_VAR2: ${{ github.inputs.environment }}
 
       - name: ${{ vars.HELLO_WORLD_STEP }}
         if: ${{ vars.HELLO_WORLD_ENABLED == 'true' }}
