@@ -1,6 +1,11 @@
 name: Greeting on variable day
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      enviroment:
+        description: environment
+        type: environment
 
 env:
   DAY_OF_WEEK: Monday
