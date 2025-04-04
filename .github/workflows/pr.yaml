@@ -21,6 +21,7 @@ jobs:
         run: npm run test
   test-cache:
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: test the cache
         run: npm ci
