@@ -27,7 +27,7 @@ jobs:
     name: ${{ vars.JOB_NAME }}
     if: ${{ vars.USE_VARIABLES == 'true' }}
     runs-on: ${{ vars.RUNNER }}
-    # environment: ${{ env.env_vars }}
+    environment: ${{ env.env_var }}
     steps:
       - name: Use variables
         run: |
