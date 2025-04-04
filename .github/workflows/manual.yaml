@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       enviroment:
+        description: environment
         type: environment
         default: qa
         required: true
