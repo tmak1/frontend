@@ -19,7 +19,7 @@ jobs:
       Greeting: Hello
     steps:
       - name: "Say Hello Mona it's Monday"
-        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
+        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!  + ${{ env.DAY_OF_WEEK }}"
         env:
           First_Name: Mona
 
@@ -27,7 +27,7 @@ jobs:
     name: ${{ vars.JOB_NAME }}
     if: ${{ vars.USE_VARIABLES == 'true' }}
     runs-on: ${{ vars.RUNNER }}
-    environment: ${{ env.env_vars }}
+    # environment: ${{ env.env_vars }}
     steps:
       - name: Use variables
         run: |
