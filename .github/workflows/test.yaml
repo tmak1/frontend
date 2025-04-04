@@ -27,7 +27,7 @@ jobs:
     name: ${{ vars.JOB_NAME }}
     if: ${{ vars.USE_VARIABLES == 'true' }}
     runs-on: ${{ vars.RUNNER }}
-    environment: ${{ github.inputs.enviroment }}
+    environment: ${{ env.env_vars }}
     steps:
       - name: Use variables
         run: |
