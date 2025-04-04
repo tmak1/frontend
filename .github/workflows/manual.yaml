@@ -1,8 +1,11 @@
-name: Pull request
+name: Manual run tests
 on:
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      enviroment:
+        type: environment
+        default: qa
+        required: true
 
 jobs:
   run-tests:
