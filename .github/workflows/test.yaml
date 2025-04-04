@@ -10,7 +10,6 @@ on:
 
 env:
   DAY_OF_WEEK: Monday
-  env_var: ${{ vars.ENV_CONTEXT_VAR }}
 
 jobs:
   greeting_job:
@@ -34,11 +33,12 @@ jobs:
           echo "repository variable : $REPOSITORY_VAR"
           echo "organization variable : $ORGANIZATION_VAR"
           echo "overridden variable : $OVERRIDE_VAR"
-          echo "variable from shell environment : $env_var"
+          echo "variable from shell environment : $ENV_CONTEXT_VAR"
         env:
           REPOSITORY_VAR: ${{ vars.REPOSITORY_VAR }}
           ORGANIZATION_VAR: ${{ vars.ORGANIZATION_VAR }}
           OVERRIDE_VAR: ${{ vars.OVERRIDE_VAR }}
+          ENV_CONTEXT_VAR: ${{ vars.ENV_CONTEXT_VAR }}
 
       - name: ${{ vars.HELLO_WORLD_STEP }}
         if: ${{ vars.HELLO_WORLD_ENABLED == 'true' }}
