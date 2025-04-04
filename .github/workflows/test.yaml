@@ -27,7 +27,8 @@ jobs:
     name: ${{ vars.JOB_NAME }}
     if: ${{ vars.USE_VARIABLES == 'true' }}
     runs-on: ${{ vars.RUNNER }}
-    environment: ${{ env.env_var }}
+    # environment: ${{ env.env_var }}  # this wont work we cant put env.prop as the value of the environment key
+    environment: ${{ github.event.inputs.enviroment }}
     steps:
       - name: Use variables
         run: |
@@ -55,3 +56,15 @@ jobs:
       - name: condition 2
         if: runner.os != 'Windows'
         run: echo "The operating system on the runner is not Windows, it's $RUNNER_OS."
+### **Key Differences:**
+
+# env is for single workflow
+# vars are confirataion variables set in github settings and accessible by all workflows
+# environment is used to cage a job to only the config variables set inside a specified environment
+
+# | Feature        | `vars`                | `env`                          | `environment`              |
+# |---------------|----------------------|-------------------------------|---------------------------|
+# | Scope         | Repository-wide       | Workflow, Job, or Step        | Environment-specific      |
+# | Where to Define | Repository Settings  | Workflow YAML                  | Repository Settings (Environments) |
+# | Can be Dynamic? | ❌ No                 | ✅ Yes                        | ❌ No                       |
+# | Secure Storage? | ❌ No (not for secrets) | ❌ No (use `secrets` for sensitive data) | ✅ Yes (with secrets) |
