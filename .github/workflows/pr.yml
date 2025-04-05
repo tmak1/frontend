@@ -3,7 +3,22 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build-test:
-    uses: ./.github/workflows/build-test.yml
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          pwd
+          ls -l
+          cd ../
+          pwd
+          ls -l
+      - uses: actions/checkout@v4
+      - run: |
+          pwd
+          ls -l
+          cd ../
+          pwd
+          ls -l
