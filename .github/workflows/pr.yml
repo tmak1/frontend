@@ -6,6 +6,6 @@ on:
 
 jobs:
   build-test:
-    uses: .github/workflows/build-test.yml@main
+    uses: ./.github/workflows/build-test.yml@main
     with:
       artifacts-path: ./outputs/coverage
