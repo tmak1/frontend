@@ -52,16 +52,3 @@ jobs:
           name: test-coverage-report
           path: ./coverage
           retention-days: 1
-
-      - name: Download test coverage
-        uses: actions/download-artifact@v4
-        with:
-          name: test-coverage-report
-          path: i-dont-know
-
-      - name: ls aritfacts (no dir)
-        run: ls -l
-
-      - name: ls artifacts
-        working-directory: ./i-dont-know
-        run: ls -l
