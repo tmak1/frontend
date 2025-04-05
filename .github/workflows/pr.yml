@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-test:
+  check:
     runs-on: ubuntu-latest
     steps:
       - run: |
@@ -22,3 +22,5 @@ jobs:
           cd ../
           pwd
           ls -l
+  build-test:
+    uses: ./.github/workflows/build-test.yml
