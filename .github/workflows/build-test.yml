@@ -36,9 +36,6 @@ jobs:
       - name: Chekcout repository
         uses: actions/checkout@v4
 
-      - name: Cache node_modules with npm
-        uses: ./.github/actions/cache-npm
-
       - name: Install dependencies
         run: npm ci
 
