@@ -9,12 +9,12 @@ jobs:
         uses: actions/checkout@v4
       - run: |
           pwd
-          ls -l
+          ls -la
           cd ../
           pwd
-          ls -l
-      # - name: Cache node_modules with npm
-      #   uses: ./.github/actions/cache-npm
+          ls -la
+      - name: Cache node_modules with npm
+        uses: ./.github/actions/cache-npm
       - name: Install dependencies
         run: npm ci
       - name: Build

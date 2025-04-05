@@ -11,16 +11,16 @@ jobs:
     steps:
       - run: |
           pwd
-          ls -l
+          ls -la
           cd ../
           pwd
-          ls -l
+          ls -la
       - uses: actions/checkout@v4
       - run: |
           pwd
-          ls -l
+          ls -la
           cd ../
           pwd
-          ls -l
+          ls -la
   build-test:
     uses: ./.github/workflows/build-test.yml
