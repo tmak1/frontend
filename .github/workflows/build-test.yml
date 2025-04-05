@@ -8,15 +8,19 @@ jobs:
       - name: Chekcout repository
         uses: actions/checkout@v4
       - run: |
+          cd .github
           pwd
           ls -la
-          cd .github
-          ls -la
+          echo --
           cd workflows
+          pwd
           ls -la
-          cd -
+          echo --
+          cd ../
           cd actions
+          pwd
           ls -la
+          echo --
       - name: Cache node_modules with npm
         uses: ./.github/actions/cache-npm
       - name: Install dependencies
