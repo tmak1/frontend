@@ -7,6 +7,12 @@ jobs:
     steps:
       - name: Chekcout repository
         uses: actions/checkout@v4
+      - run: |
+          pwd
+          ls -l
+          cd ../
+          pwd
+          ls -l
       - name: Cache node_modules with npm
         uses: ./.github/actions
       - name: Install dependencies
