@@ -13,8 +13,8 @@ jobs:
           cd ../
           pwd
           ls -l
-      - name: Cache node_modules with npm
-        uses: ./.github/actions/cache-npm
+      # - name: Cache node_modules with npm
+      #   uses: ./.github/actions/cache-npm
       - name: Install dependencies
         run: npm ci
       - name: Build
