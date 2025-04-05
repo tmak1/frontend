@@ -1,0 +1,49 @@
+name: Build and test
+on:
+  workflow_call:
+    inputs:
+      artifacts-path:
+        type: string
+        required: false
+        default: artifacts
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      cache-name: cache-node_modules
+    steps:
+      - name: Chekcout
+        uses: actions/checkout@v4
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: List the state of node_modules
+        if: ${{ steps.cache-npm.outputs.cache-hit != true }}
+        continue-on-error: true
+        run: npm list
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build --if-present
+      - name: Test
+        run: npm run test
+      - name: Upload test converage
+        id: upload-coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage
+          retention-days: 1
+      - name: Download test coverage
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage
+          path: ${{ inputs.artifacts-path }}
