@@ -6,21 +6,5 @@ on:
   workflow_dispatch:
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          pwd
-          ls -la
-          cd ../
-          pwd
-          ls -la
-      - uses: actions/checkout@v4
-      - run: |
-          pwd
-          ls -la
-          cd ../
-          pwd
-          ls -la
   build-test:
     uses: ./.github/workflows/build-test.yml
