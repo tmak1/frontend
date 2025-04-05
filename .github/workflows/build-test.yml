@@ -1,5 +1,10 @@
 name: Build and test
-on: workflow_call
+on:
+  workflow_call:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -7,18 +12,16 @@ jobs:
     steps:
       - name: Chekcout repository
         uses: actions/checkout@v4
-      - run: |
-          pwd
-          ls -l
-          cd ../
-          pwd
-          ls -l
+
       - name: Cache node_modules with npm
         uses: ./.github/actions/cache-npm
+
       - name: Install dependencies
         run: npm ci
+
       - name: Build
         run: npm run build --if-present
+
       - name: Upload build
         uses: actions/upload-artifact@v4
         with:
@@ -30,21 +33,22 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+      - name: Chekcout repository
+        uses: actions/checkout@v4
+
+      - name: Cache node_modules with npm
+        uses: ./.github/actions/cache-npm
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Test
         run: npm run test
+
       - name: Upload test converage report
         uses: actions/upload-artifact@v4
+
         with:
           name: test-coverage-report
           path: ./coverage
           retention-days: 1
-      - name: Download test coverage
-        uses: actions/download-artifact@v4
-        with:
-          name: test-coverage-report
-          path: i-dont-know
-      - name: ls aritfacts (no dir)
-        run: ls -l
-      - name: ls artifacts
-        working-directory: ./i-dont-know
-        run: ls -l
