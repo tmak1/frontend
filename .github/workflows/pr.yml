@@ -7,5 +7,3 @@ on:
 jobs:
   build-test:
     uses: ./.github/workflows/build-test.yml
-    with:
-      artifacts-path: ./outputs/coverage
