@@ -2,13 +2,12 @@ name: Cache npm
 description: To cache node_modules using npm
 
 runs:
-  using: composite
+  using: "composite"
   steps:
-    # - name: Chekcout repository
-    #   shell: bash
-    #   uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
     - name: Cache node_modules
-      shell: bash
       uses: actions/cache@v4
       with:
         path: ~/.npm
