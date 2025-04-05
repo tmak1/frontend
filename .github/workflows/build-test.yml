@@ -46,6 +46,7 @@ jobs:
         run: npm run test
 
       - name: Upload test converage report
+        if: always()
         uses: actions/upload-artifact@v4
 
         with:
