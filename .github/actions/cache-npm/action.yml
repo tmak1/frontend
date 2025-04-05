@@ -5,6 +5,7 @@ runs:
   using: composite
   steps:
     - name: Chekcout repository
+      shell: bash
       uses: actions/checkout@v4
     - name: Cache node_modules
       shell: bash
