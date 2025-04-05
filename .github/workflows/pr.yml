@@ -1,4 +1,4 @@
-name: Pull request
+name: Create pull request
 on:
   pull_request:
     branches:
